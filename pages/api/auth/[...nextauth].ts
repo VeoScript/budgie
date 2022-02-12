@@ -17,5 +17,14 @@ export default NextAuth({
       clientId: `${process.env.FACEBOOK_CLIENT_ID}`,
       clientSecret: `${process.env.FACEBOOK_CLIENT_SECRET}`,
     }),
-  ]
+  ],
+  session: {
+    strategy: "database",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60
+  },
+  pages: {
+    signIn: '/signin',
+    error: '/signin'
+  }
 })
