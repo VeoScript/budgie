@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./public/**/*.html", 
@@ -8,7 +9,16 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'mattblack': '#0D0D0D',
+        'purewhite': '#FFFFFF',
+      },
+      fontFamily: {
+        berkshireswash: ['Berkshire Swash'],
+        poppins: ['Poppins', ...defaultTheme.fontFamily.sans]
+      }
+    },
   },
   plugins: [],
 }
