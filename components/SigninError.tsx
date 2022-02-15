@@ -5,6 +5,7 @@ interface TypeProps {
   errors: any
 }
 
+// Custom Sign in Error Function Component
 const SigninError: React.FC<TypeProps> = ({ error, errors }) => {
 
   const errorMessage = error && (errors[error] ?? errors.default)
