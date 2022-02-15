@@ -2,9 +2,11 @@ import type { NextPage } from 'next'
 import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import { signOut, useSession } from 'next-auth/react'
+import Layout from '../layouts/default'
+import BudgetList from '../components/BudgetList'
+import { useSession } from 'next-auth/react'
 
-const Home: NextPage = () => {
+const Budget: NextPage = () => {
 
   const { data: session, status } = useSession()
 
@@ -32,18 +34,12 @@ const Home: NextPage = () => {
         <title>Budgie</title>
       </Head>
       {session && (
-        <div className="flex flex-col items-center justify-center w-full h-screen space-y-3">
-          <h1 className="font-bold text-2xl">Welcome {session.user?.name}</h1>
-          <button
-            className="fle justify-centerx p-3 bg-red-700 text-white w-full max-w-[10rem]"
-            onClick={() => signOut()}
-          >
-            Sign Out
-          </button>
-        </div>
+        <Layout>
+          <BudgetList />
+        </Layout>
       )}
     </React.Fragment>
   )
 }
 
-export default Home
+export default Budget

@@ -41,7 +41,7 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
       <Head>
         <title>Budgie | Sign in</title>
       </Head>
-      <div className="font-poppins flex flex-row items-center justify-between px-32 w-full h-screen bg-white">
+      <div className="font-titilliumweb flex flex-row items-center justify-between px-32 w-full h-screen bg-white">
         <div className="flex flex-col items-start justify-center w-full">
           <div className="flex flex-col items-start space-y-5">
             <h1 className="font-berkshireswash font-bold text-6xl text-mattblack">Budgie</h1>

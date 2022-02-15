@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./public/**/*.html", 
@@ -16,9 +17,12 @@ module.exports = {
       },
       fontFamily: {
         berkshireswash: ['Berkshire Swash'],
+        titilliumweb: ['Titillium Web'],
         poppins: ['Poppins', ...defaultTheme.fontFamily.sans]
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
