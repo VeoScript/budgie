@@ -1,9 +1,22 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { RiCloseLine } from 'react-icons/ri'
+import Spinner from '../../utils/Spinner'
+
+interface TypeProps {
+  getUserId: any
+}
+
+interface FormData {
+  budgetName: string
+}
 
 // Create Budget Dialog Box Function Component
-const CreateBudget = () => {
+const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
+
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormData>()
+
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -14,11 +27,27 @@ const CreateBudget = () => {
     setIsOpen(true)
   }
 
+  async function onCreateBudget(formData: FormData) {
+    const budgetName = formData.budgetName
+    const userId = getUserId.id
+
+    await fetch('/api/budget/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ budgetName, userId })
+    })
+
+    reset()
+    closeModal()
+  }
+
   return (
     <>
       <button
         type="button"
-        className="px-5 py-1.5 rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+        className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
         onClick={openModal}
       >
         Create Budget
@@ -64,36 +93,48 @@ const CreateBudget = () => {
                   <div className="flex flex-row items-center justify-between w-full px-6 py-3 border-b border-zinc-300">
                     <h3 className="font-bold text-lg">Create Budget</h3>
                     <button
+                      className="outline-none"
                       onClick={closeModal}
                     >
                       <RiCloseLine className="w-5 h-5 text-zinc-500" />
                     </button>
                   </div>
-                  <div className="block w-full px-6 py-3 space-y-2">
+                  <form onSubmit={handleSubmit(onCreateBudget)} className="block w-full px-6 py-3 space-y-2">
                     <label className="block w-full">
-                      <span className="text-sm">Name of your budget - E.g. Home, Car, Utilities, etc.</span>
+                      <span className="text-sm">e.g. Home, Car, Utilities, etc.</span>
                       <input
                         type="text"
                         className="form-input mt-0 block w-full px-0.5 border-0 border-b border-zinc-300 focus:ring-0 focus:border-blue-600"
-                        
+                        {...register("budgetName", { required: true })}
                       />
                     </label>
                     <div className="flex items-center justify-end w-full space-x-1">
                       <button
                         type="button"
-                        className="px-5 py-1.5 rounded-md bg-zinc-300 text-mattblack transition ease-linear duration-200 hover:bg-opacity-80"
+                        className="px-5 py-1.5 outline-none rounded-md bg-zinc-300 text-mattblack transition ease-linear duration-200 hover:bg-opacity-80"
                         onClick={closeModal}
                       >
                         Cancel
                       </button>
-                      <button
-                        type="button"
-                        className="px-5 py-1.5 rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
-                      >
-                        Add
-                      </button>
+                      {!isSubmitting && (
+                        <button
+                          type="submit"
+                          className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+                        >
+                          Add
+                        </button>
+                      )}
+                      {isSubmitting && (
+                        <div className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
+                          <Spinner
+                            color="#FFFFFF"
+                            width={24}
+                            height={24}
+                          />
+                        </div>
+                      )}
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </Transition.Child>
