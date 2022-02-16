@@ -5,7 +5,7 @@ import Router, { useRouter } from 'next/router'
 import { getProviders, signIn, useSession } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import { RiFacebookFill  } from 'react-icons/ri'
-import { errors } from '../lib/NextAuthCustomErrors'
+import { errors } from '../utils/NextAuthCustomErrors'
 import SigninError from '../components/SigninError'
 
 interface TypeProps {
