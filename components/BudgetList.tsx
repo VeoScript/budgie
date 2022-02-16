@@ -1,8 +1,12 @@
 import React from 'react'
 import CreateBudget from './DialogComponents/CreateBudget'
 
+interface TypeProps {
+  getUserId: any
+}
+
 // List of Budgets Function Component
-const BudgetList = () => {
+const BudgetList: React.FC<TypeProps> = ({ getUserId }) => {
   return (
     <div className="flex flex-col w-full px-28 py-10 space-y-16">
       <div className="flex flex-row items-center justify-between w-full">
@@ -14,7 +18,7 @@ const BudgetList = () => {
           <span className="font-light">Budget</span>
         </div>
         <div className="flex items-center justify-end w-full font-bold text-base">
-          <CreateBudget />
+          <CreateBudget getUserId={getUserId} />
         </div>
       </div>
       <div className="flex flex-col w-full">
