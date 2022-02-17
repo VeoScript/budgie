@@ -2,6 +2,7 @@ import type { NextPage, GetServerSideProps } from 'next'
 import React from 'react'
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
+import Loading from '../layouts/loading'
 import { getProviders, signIn, useSession } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import { RiFacebookFill  } from 'react-icons/ri'
@@ -27,12 +28,7 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
 
   if (status === "loading") {
     return (
-      <React.Fragment>
-        <Head>
-          <title>Budgie | Loading...</title>
-        </Head>
-        <div>Loading...</div>
-      </React.Fragment>
+      <Loading />
     )
   }  
 

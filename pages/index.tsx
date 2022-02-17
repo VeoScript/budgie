@@ -2,6 +2,7 @@ import type { NextPage, GetServerSideProps } from 'next'
 import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
+import Loading from '../layouts/loading'
 import Layout from '../layouts/default'
 import BudgetList from '../components/BudgetList'
 import { useSession, getSession } from 'next-auth/react'
@@ -24,12 +25,7 @@ const Budget: NextPage<TypeProps> = ({ getUserId }) => {
 
   if (status === "loading") {
     return (
-      <React.Fragment>
-        <Head>
-          <title>Budgie | Loading...</title>
-        </Head>
-        <div>Loading...</div>
-      </React.Fragment>
+      <Loading />
     )
   }
 
