@@ -14,7 +14,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
     <div className="flex flex-col w-full px-28 py-10 space-y-16">
       <div className="flex flex-row items-center justify-between w-full px-5">
         <div className="flex items-center justify-start w-full font-bold text-2xl">
-          My Budget List
+          Budget Plan
         </div>
         <div className="flex items-center justify-center w-full space-x-2 font-bold text-2xl">
           <span>{ budgets && budgets.length }</span>
