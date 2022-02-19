@@ -15,12 +15,12 @@ interface TypeProps {
 
 const Signin: NextPage<TypeProps> = ({ providers }) => {
 
-  const { data: session, status } = useSession()
+  const { status } = useSession()
 
   const { error } = useRouter().query
 
   React.useEffect(() => {
-    if (session) {
+    if (status === 'authenticated') {
       Router.push('/')
       return
     }
