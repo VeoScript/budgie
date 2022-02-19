@@ -101,10 +101,10 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
                   </div>
                   <form onSubmit={handleSubmit(onCreateBudget)} className="block w-full px-6 py-3 space-y-2">
                     <label className="block w-full">
-                      <span className="text-sm">e.g. Home, Car, Utilities, etc.</span>
+                      <span className="text-sm">e.g. Monthly Expenses, Business, Car, House etc.</span>
                       <input
                         type="text"
-                        className="form-input mt-0 block w-full px-0.5 border-0 border-b border-zinc-300 focus:ring-0 focus:border-blue-600"
+                        className="form-input outline-none mt-0 block w-full px-0.5 py-3 border-0 border-b border-zinc-300 focus:ring-0 focus:border-blue-600"
                         {...register("budgetName", { required: true })}
                       />
                     </label>
