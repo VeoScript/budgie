@@ -4,17 +4,34 @@ import Head from 'next/head'
 import Router from 'next/router'
 import Loading from '../layouts/loading'
 import Layout from '../layouts/default'
-import BudgetList from '../components/BudgetList'
+import BudgetList from '../components/BudgetComponents/BudgetList'
 import { useSession, getSession } from 'next-auth/react'
 import prisma from '../lib/Prisma'
+import useSWR from 'swr'
+
+const fetcher = async (
+  input: RequestInfo,
+  init: RequestInit,
+  ...args: any[]
+) => {
+  const res = await fetch(input, init)
+  return res.json()
+}
 
 interface TypeProps {
   getUserId: any
+  getBudgets: any
 }
 
-const Budget: NextPage<TypeProps> = ({ getUserId }) => {
+const Budget: NextPage<TypeProps> = ({ getUserId, getBudgets }) => {
 
   const { data: session, status } = useSession()
+
+  // fetch budgets from database on realtime
+  const { data: budgets } = useSWR(`/api/budget/${session && getUserId.id}`, fetcher, {
+    refreshInterval: 1000,
+    fallbackData: getBudgets
+  })
 
   React.useEffect(() => {
     if (!session) {
@@ -36,7 +53,10 @@ const Budget: NextPage<TypeProps> = ({ getUserId }) => {
       </Head>
       {session && (
         <Layout>
-          <BudgetList getUserId={getUserId} />
+          <BudgetList
+            getUserId={getUserId}
+            budgets={budgets}
+          />
         </Layout>
       )}
     </React.Fragment>
@@ -56,9 +76,27 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   })
 
+  const getBudgets = await prisma.budget.findMany({
+    where: {
+      userId: getUserId?.id
+    },
+    orderBy: [{
+      counter: 'desc'
+    }],
+    select: {
+      id: true,
+      counter: true,
+      name: true,
+      balance: true,
+      income: true,
+      expense: true,
+    }
+  })
+
   return {
     props: {
-      getUserId
+      getUserId,
+      getBudgets
     }
   }
 }

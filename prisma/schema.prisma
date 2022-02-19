@@ -59,7 +59,22 @@ model VerificationToken {
 
 model Budget {
   id                              String                @id      @default(cuid())
+  counter                         Int                   @unique  @default(autoincrement())
   name                            String
+  balance                         Int?                  @default(0)
+  income                          Int?                  @default(0)
+  expense                         Int?                  @default(0)
+  budgetDetails                   BudgetDetails[]
   user                            User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                          String
+}
+
+model BudgetDetails {
+  id                              String                @id      @default(cuid())
+  counter                         Int                   @unique  @default(autoincrement())
+  type                            String?               //e.g. Income, Expense, Paid and it will indicate by different colors
+  name                            String?
+  values                          Int?
+  budget                          Budget                @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+  budgetId                        String
 }
