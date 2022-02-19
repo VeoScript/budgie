@@ -53,7 +53,7 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
     // if the type of budget is Expense then it will be your Balance plus your deleted Amount (Syempre idadag nya yung amount ng mga dinelete mong expenses)
     if (get_budget.type === 'Expense') {
       currentBalance = getBalance + budgetAmount
-      currentExpenses = budgetAmount - getExpense
+      currentExpenses = getExpense - budgetAmount
 
       // api-route for update the current balance
       await fetch('/api/budget/budget-details/update_balance', {
