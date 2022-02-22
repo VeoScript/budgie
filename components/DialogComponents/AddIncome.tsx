@@ -178,7 +178,7 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
                         Cancel
                       </button>
                       {isSubmitting && (
-                        <div className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
+                        <div className="px-5 py-1.5 outline-none rounded-md bg-green-700 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
                           <Spinner
                             color="#FFFFFF"
                             width={24}

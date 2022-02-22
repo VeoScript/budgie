@@ -2,7 +2,7 @@ import React from 'react'
 import DisplayIncomeAndExpenses from './DisplayIncomeAndExpenses'
 import AddIncome from '../DialogComponents/AddIncome'
 import AddExpense from '../DialogComponents/AddExpense'
-import { RiSettings4Line } from 'react-icons/ri'
+import BudgetMenu from './BudgetMenu'
 
 interface TypeProps {
   budget: any
@@ -14,11 +14,8 @@ const budget: React.FC<TypeProps> = ({ budget, budget_details }) => {
   return (
     <div className="flex flex-col w-full h-screen px-28 py-10 space-y- bg-purewhite">
       <div className="flex flex-row items-center justify-between w-full px-5 pb-3 border-b border-zinc-400">
-        <div className="flex items-center justify-start w-full space-x-3">
-          <button>
-            {/* Menu button for Rename and Delete */}
-            <RiSettings4Line className="w-5 h-5 text-zinc-800" />
-          </button>
+        <div className="relative flex items-center justify-start w-full space-x-3">
+          <BudgetMenu budget={budget} />
           <h3 className="font-bold text-2xl">{ budget.name }</h3>
         </div>
         <div className="flex flex-row items-center justify-center w-full space-x-2">
