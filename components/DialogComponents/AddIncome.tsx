@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { RiAddLine, RiCloseLine } from 'react-icons/ri'
 import Spinner from '../../utils/Spinner'
 
@@ -40,6 +41,20 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
 
     const currentIncome = getAmount + getIncome
     const currentBalance = getAmount + getBalance
+
+    if (getAmount === 0) {
+      toast('Amount invalid! The amount value must be greater than zero (0).', {
+        style: {
+          borderRadius: '10px',
+          border: '2px solid #1ED760',
+          padding: '5px',
+          fontSize: '14px',
+          background: '#1D1F21',
+          color: '#FFFFFF'
+        }
+      })
+      return
+    } 
 
     // api-route for add income or expenses
     await fetch('/api/budget/budget-details/add_income_expense', {
@@ -174,7 +189,7 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
                       {!isSubmitting && (
                         <button
                           type="submit"
-                          className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+                          className="px-5 py-1.5 outline-none rounded-md bg-green-700 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
                         >
                           Add
                         </button>
