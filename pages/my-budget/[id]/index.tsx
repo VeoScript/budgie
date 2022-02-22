@@ -111,6 +111,9 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
         id: String(params?.id)
       }
     },
+    orderBy: [{
+      counter: 'asc'
+    }],
     select: {
       id: true,
       counter: true,

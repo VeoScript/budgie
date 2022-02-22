@@ -95,7 +95,7 @@ const AddExpense: React.FC<TypeProps> = ({ budget }) => {
     <>
       <button
         type='button'
-        className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-white bg-red-800 transition ease-in-out duration-300 hover:bg-opacity-80"
+        className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-sm text-white bg-red-800 transition ease-in-out duration-300 hover:bg-opacity-80"
         onClick={openModal}
       >
         <RiSubtractLine />

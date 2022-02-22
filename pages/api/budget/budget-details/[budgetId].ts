@@ -11,6 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: String(budgetId)
       }
     },
+    orderBy: [{
+      counter: 'asc'
+    }],
     select: {
       id: true,
       counter: true,
