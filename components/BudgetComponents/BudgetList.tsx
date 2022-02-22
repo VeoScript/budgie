@@ -25,7 +25,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
         </div>
       </div>
       <div className="flex flex-col w-full">
-        <div className="flex flex-row items-center w-full divide-x divide-zinc-400 border-b border-zinc-400">
+        <div className="flex flex-row items-center w-full border-b border-zinc-400">
           <div className="flex items-center justify-start px-5 py-2 w-full max-w-xl font-bold text-lg text-zinc-700">
             Budget
           </div>
@@ -54,10 +54,10 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
             {budgets.map((budget: any) => (
               <Link href={`/my-budget/${budget.id}`} key={ budget.counter }>
                 <a className="flex flex-row items-center w-full cursor-pointer divide-x divide-zinc-200 border-b border-zinc-200 transition ease-linear duration-300 hover:bg-zinc-100">
-                  <div className="flex items-center justify-start py-2 w-full max-w-xl font-semibold text-lg">
+                  <div className="flex items-center justify-start py-4 w-full max-w-xl font-semibold text-lg">
                     <span className="px-5 text-zinc-700">{ budget.name }</span>
                   </div>
-                  <div className="flex items-center justify-center py-2 w-full max-w-xl font-normal text-base">
+                  <div className="flex items-center justify-center py-4 w-full max-w-xl font-normal text-base">
                     {budget.income === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-green-600">
@@ -65,7 +65,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
                         </span>
                     }
                   </div>
-                  <div className="flex items-center justify-center py-2 w-full max-w-xl font-normal text-base">
+                  <div className="flex items-center justify-center py-4 w-full max-w-xl font-normal text-base">
                     {budget.expense === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-red-700">
@@ -73,7 +73,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
                         </span>
                     }
                   </div>
-                  <div className="flex items-center justify-center py-2 w-full max-w-xl font-normal text-base">
+                  <div className="flex items-center justify-center py-4 w-full max-w-xl font-normal text-base">
                     {budget.balance === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-blue-600">

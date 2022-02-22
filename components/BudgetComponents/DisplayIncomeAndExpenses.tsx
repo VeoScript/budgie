@@ -107,7 +107,7 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
                 {get_budget.name}
               </div>
               <div className="flex items-center w-full p-3">
-                {get_budget.values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ₱ {get_budget.values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </div>
               <div className="flex items-center justify-center w-full max-w-[10rem] py-1 space-x-5">
                 <button

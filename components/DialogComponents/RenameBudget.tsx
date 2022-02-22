@@ -5,17 +5,21 @@ import { RiCloseLine } from 'react-icons/ri'
 import Spinner from '../../utils/Spinner'
 
 interface TypeProps {
-  getUserId: any
+  budget: any
+  setIsDropdown: any
 }
 
 interface FormData {
   budgetName: string
 }
 
-// Create Budget Dialog Box Function Component
-const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
+const RenameBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
 
-  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormData>()
+  const defaultValues = {
+    budgetName: budget.name
+  }
+
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormData>({ defaultValues })
 
   let [isOpen, setIsOpen] = useState(false)
 
@@ -24,40 +28,41 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
   }
 
   function openModal() {
-    reset()
     setIsOpen(true)
+    reset(defaultValues)
   }
 
-  async function onCreateBudget(formData: FormData) {
+  async function onRenameBudget(formData: FormData) {
+    const budgetId = budget.id
     const budgetName = formData.budgetName
-    const userId = getUserId.id
 
-    await fetch('/api/budget/create', {
+    await fetch('/api/budget/rename', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ budgetName, userId })
+      body: JSON.stringify({ budgetId, budgetName })
     })
 
     reset()
     closeModal()
+    setIsDropdown(false)
   }
 
   return (
     <>
       <button
         type="button"
-        className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+        className="outline-none p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100"
         onClick={openModal}
       >
-        Create Budget
+        Rename
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto bg-mattblack bg-opacity-20"
+          className="fixed inset-0 overflow-y-auto bg-mattblack bg-opacity-20"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -89,10 +94,10 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="font-titilliumweb inline-block w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="font-titilliumweb inline-block z-50 w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                 <div className="flex flex-col w-full">
                   <div className="flex flex-row items-center justify-between w-full px-6 py-3 border-b border-zinc-300">
-                    <h3 className="font-bold text-lg">Create Budget</h3>
+                    <h3 className="font-bold text-lg">Rename Budget</h3>
                     <button
                       className="outline-none"
                       onClick={closeModal}
@@ -100,7 +105,7 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
                       <RiCloseLine className="w-5 h-5 text-zinc-500" />
                     </button>
                   </div>
-                  <form onSubmit={handleSubmit(onCreateBudget)} className="block w-full px-6 py-3 space-y-2">
+                  <form onSubmit={handleSubmit(onRenameBudget)} className="block w-full px-6 py-3 space-y-2">
                     <label className="block w-full">
                       <span className="text-sm">e.g. Monthly Expenses, Business, Car, House etc.</span>
                       <input
@@ -122,7 +127,7 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
                           type="submit"
                           className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
                         >
-                          Add
+                          Save
                         </button>
                       )}
                       {isSubmitting && (
@@ -146,4 +151,4 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
   )
 }
 
-export default CreateBudget
+export default RenameBudget
