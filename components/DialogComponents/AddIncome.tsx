@@ -25,8 +25,8 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
   }
 
   function openModal() {
-    setIsOpen(true)
     reset()
+    setIsOpen(true)
   }
 
   async function onCreateIncome(formData: FormData) {
@@ -35,11 +35,11 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
     const getName = formData.name
 
     const getAmount = parseInt(formData.amount)
-    const getBalance = parseInt(budget.balance)
-    const currentBalance = getBalance + getAmount
-
     const getIncome = parseInt(budget.income)
+    const getBalance = parseInt(budget.balance)
+
     const currentIncome = getAmount + getIncome
+    const currentBalance = getAmount + getBalance
 
     // api-route for add income or expenses
     await fetch('/api/budget/budget-details/add_income_expense', {
@@ -81,7 +81,7 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
     <>
       <button
         type='button'
-        className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-white bg-green-700 transition ease-in-out duration-300 hover:bg-opacity-80"
+        className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-sm text-white bg-green-700 transition ease-in-out duration-300 hover:bg-opacity-80"
         onClick={openModal}
       >
         <RiAddLine />
@@ -140,7 +140,7 @@ const AddIncome: React.FC<TypeProps> = ({ budget }) => {
                       <input
                         type="text"
                         className="form-input outline-none mt-0 block w-full px-0.5 py-2 border-0 border-b border-zinc-300 focus:ring-0 focus:border-blue-600"
-                        placeholder="e.g. Income: Salary, Expense: Rent, etc."
+                        placeholder="e.g. Work, Salary, Profit etc."
                         {...register("name", { required: true })}
                       />
                     </label>
