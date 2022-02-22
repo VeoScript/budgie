@@ -41,6 +41,20 @@ const AddExpense: React.FC<TypeProps> = ({ budget }) => {
 
     const getExpense = parseInt(budget.expense)
     const currentExpenses = getAmount + getExpense
+
+    if (getAmount === 0) {
+      toast('Amount invalid! The amount value must be greater than zero (0).', {
+        style: {
+          borderRadius: '10px',
+          border: '2px solid #1ED760',
+          padding: '5px',
+          fontSize: '14px',
+          background: '#1D1F21',
+          color: '#FFFFFF'
+        }
+      })
+      return
+    } 
   
     if (getBalance < getAmount) {
       toast('Not enough balance! The amount value must be less than to your balance.', {
@@ -188,7 +202,7 @@ const AddExpense: React.FC<TypeProps> = ({ budget }) => {
                       {!isSubmitting && (
                         <button
                           type="submit"
-                          className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+                          className="px-5 py-1.5 outline-none rounded-md bg-red-800 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
                         >
                           Add
                         </button>
