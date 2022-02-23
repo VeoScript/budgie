@@ -51,6 +51,12 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
         )}
         {budgets && (
           <div className="flex flex-col w-full h-full max-h-[20rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-zinc-500 scrollbar-track-zinc-300">
+            {budgets.length === 0 && (
+              <div className="flex flex-col items-center justify-center w-full h-screen space-y-1 border-b border-zinc-400">
+                <h3 className="font-bold text-3xl text-zinc-500">Welcome to <span className="font-berkshireswash text-mattblack">Budgie</span></h3>
+                <h5 className="font-normal text-base text-zinc-400">Create your first Budget Plan</h5>
+              </div>
+            )}
             {budgets.map((budget: any) => (
               <Link href={`/my-budget/${budget.id}`} key={ budget.counter }>
                 <a className="flex flex-row items-center w-full cursor-pointer divide-x divide-zinc-200 border-b border-zinc-200 transition ease-linear duration-300 hover:bg-zinc-100">
