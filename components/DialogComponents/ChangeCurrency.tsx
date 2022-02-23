@@ -77,7 +77,7 @@ const ChangeCurrency: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
             </div>
             <form onSubmit={handleSubmit(onRenameBudget)} className="block w-full px-6 py-3 space-y-2">
               <label className="block w-full">
-                <span className="text-base text-zinc-500">e.g. ₱, $, ₩, €, ₤, ¥ etc.</span>
+                <span className="text-base text-zinc-500">Manage your budget plan with specific currency</span>
                 <select
                   className="form-input cursor-pointer outline-none mt-0 block w-full px-0.5 py-3 border-0 border-b border-zinc-300 focus:ring-0 focus:border-blue-600"
                   {...register("budgetCurrency", { required: true })}
