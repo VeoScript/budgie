@@ -7,10 +7,9 @@ import DynamicDialog from '../../layouts/dialog'
 
 interface TypeProps {
   budget: any
-  setIsDropdown: any
 }
 
-const DeleteBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
+const ResetBudget: React.FC<TypeProps> = ({ budget }) => {
 
   const { handleSubmit, formState: { isSubmitting } } = useForm()
 
@@ -24,30 +23,28 @@ const DeleteBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
     setIsOpen(true)
   }
 
-  async function onDeleteBudget() {
+  const onReset = async () => {
     const budgetId = budget.id
 
-    await fetch('/api/budget/delete', {
+    await fetch('/api/budget/budget-details/reset', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ budgetId })
     })
-    
+
     closeModal()
-    setIsDropdown(false)
-    Router.push('/')
   }
 
   return (
     <>
       <button
         type="button"
-        className="outline-none p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100"
+        className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-sm text-white bg-mattblack transition ease-in-out duration-300 hover:bg-opacity-80"
         onClick={openModal}
       >
-        Delete
+        Reset
       </button>
 
       <DynamicDialog
@@ -58,7 +55,7 @@ const DeleteBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
         <div className="font-titilliumweb inline-block z-50 w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
           <div className="flex flex-col w-full">
             <div className="flex flex-row items-center justify-between w-full px-6 py-3 border-b border-zinc-300">
-              <h3 className="font-bold text-lg">Delete Budget Plan</h3>
+              <h3 className="font-bold text-lg">Reset Budget Plan</h3>
               <button
                 className="outline-none"
                 onClick={closeModal}
@@ -68,23 +65,21 @@ const DeleteBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
             </div>
             <div className="flex items-center w-full p-6">
               <span className="text-center">
-                Are you sure you want to permanently delete&nbsp;
-                <span className="font-bold">{ budget.name }</span>
-                &nbsp;budget plan?
+                Are you sure you want to reset this budget plan? It may lost all of your entries here.
               </span>
             </div>
             <div className="flex items-center justify-center w-full space-x-1 px-6 py-3">
               {!isSubmitting && (
                 <button
                   type="button"
-                  className="px-5 py-1.5 outline-none rounded-md bg-red-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
-                  onClick={handleSubmit(onDeleteBudget)}
+                  className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+                  onClick={handleSubmit(onReset)}
                 >
-                  Delete
+                  Reset
                 </button>
               )}
               {isSubmitting && (
-                <div className="px-5 py-1.5 outline-none rounded-md bg-red-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
+                <div className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
                   <Spinner
                     color="#FFFFFF"
                     width={24}
@@ -107,4 +102,4 @@ const DeleteBudget: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
   )
 }
 
-export default DeleteBudget
+export default ResetBudget
