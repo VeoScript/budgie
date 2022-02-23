@@ -93,6 +93,7 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
       id: true,
       counter: true,
       name: true,
+      currency: true,
       balance: true,
       income: true,
       expense: true,
@@ -119,9 +120,19 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
       counter: true,
       type: true,
       name: true,
-      values: true
+      values: true,
+      date: true
     }
   })
+
+  if (!get_budget) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
 
   return {
     props: {

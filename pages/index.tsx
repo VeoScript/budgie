@@ -87,6 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       id: true,
       counter: true,
       name: true,
+      currency: true,
       balance: true,
       income: true,
       expense: true,

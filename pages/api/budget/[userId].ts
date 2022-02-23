@@ -16,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       id: true,
       counter: true,
       name: true,
+      currency: true,
       balance: true,
       income: true,
       expense: true,
