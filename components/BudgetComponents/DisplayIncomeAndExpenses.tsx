@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { RiDeleteBinLine } from 'react-icons/ri'
+import ResetBudget from '../DialogComponents/ResetBudget'
 import Spinner from '../../utils/Spinner'
 import Moment from 'react-moment'
 
@@ -13,18 +14,6 @@ interface TypeProps {
 const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details }) => {
 
   const { handleSubmit, formState: { isSubmitting } } = useForm()
-
-  const onReset = async () => {
-    const budgetId = budget.id
-
-    await fetch('/api/budget/budget-details/reset', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ budgetId })
-    })
-  }
 
   const onDelete = async (budget: any, get_budget: any) => {
     const budgetId = budget.id
@@ -99,6 +88,12 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
       {/* Dynamic Controls Area */}
       {!isSubmitting && (
         <div className="flex flex-col w-full h-full max-h-[28rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-zinc-500 scrollbar-track-zinc-300">
+          {budget_details.length === 0 && (
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <h3 className="font-bold text-2xl text-zinc-500">Budget Plan has no entries yet.</h3>
+              <h5 className="font-normal text-base text-zinc-400">Add your first Income</h5>
+            </div>
+          )}
           {budget_details.map((get_budget: any) => (
             <div className={`${get_budget.type === 'Income' ? 'bg-green-100' : 'bg-red-100'} flex flex-row items-center w-full divide-x divide-zinc-400 border-b border-zinc-400`} key={get_budget.counter}>
               <div className="flex items-center w-full max-w-[12rem] px-3">
@@ -151,13 +146,9 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
         </div>
         <div className="flex items-center justify-end w-full space-x-2">
           <span className="font-light text-xs text-zinc-3000">If there is any problem about the computation, try to reset your budget plan.</span>
-          <button
-            type="button"
-            className="flex flex-row items-center px-3 py-1 space-x-1 outline-none rounded-md text-sm text-white bg-mattblack transition ease-in-out duration-300 hover:bg-opacity-80"
-            onClick={handleSubmit(onReset)}
-          >
-            Reset
-          </button>
+          <ResetBudget
+            budget={budget}
+          />
         </div>
       </div>
    </React.Fragment>

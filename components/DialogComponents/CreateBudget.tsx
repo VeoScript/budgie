@@ -62,7 +62,7 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
         <div className="font-titilliumweb inline-block w-full max-w-md overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
           <div className="flex flex-col w-full">
             <div className="flex flex-row items-center justify-between w-full px-6 py-3 border-b border-zinc-300">
-              <h3 className="font-bold text-lg">Create Budget</h3>
+              <h3 className="font-bold text-lg">Create Budget Plan</h3>
               <button
                 className="outline-none"
                 onClick={closeModal}
