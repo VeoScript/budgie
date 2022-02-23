@@ -61,7 +61,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
                     {budget.income === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-green-600">
-                          ₱ {budget.income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {budget.currency} {budget.income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </span>
                     }
                   </div>
@@ -69,7 +69,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
                     {budget.expense === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-red-700">
-                          ₱ {budget.expense.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {budget.currency} {budget.expense.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </span>
                     }
                   </div>
@@ -77,7 +77,7 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
                     {budget.balance === 0
                       ? <span className="px-3 rounded-md font-poppins text-sm text-zinc-400">No value as of now</span>
                       : <span className="px-3 rounded-md font-poppins text-white bg-blue-600">
-                          ₱ {budget.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                          {budget.currency} {budget.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </span>
                     }
                   </div>

@@ -71,26 +71,18 @@ const AccountMenu: React.FC<SessionProps> = ({ get_session }) => {
       </Menu.Button>
       <Menu.Items className="flex flex-col overflow-hidden absolute right-0 w-48 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-zinc-200 focus:outline-none">
         <Menu.Item>
-          {({ active }) => (
-            <div className={`p-3 font-medium text-sm text-left cursor-pointer ${active && 'bg-zinc-100  transition ease-in-out duration-200'}`}>
-              <Link href="/">
-                <a>
-                  {get_session.user?.name}
-                </a>
-              </Link>
-            </div>
-          )}
+          <Link href="/">
+            <a className="p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100">
+              {get_session.user?.name}
+            </a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
-          {({ active }) => (
-            <div className={`p-3 font-medium text-sm text-left cursor-pointer ${active && 'bg-zinc-100  transition ease-in-out duration-200'}`}>
-              <Link href="/settings">
-                <a>
-                  Settings
-                </a>
-              </Link>
-            </div>
-          )}
+          <Link href="/settings">
+            <a className="p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100">
+              Settings
+            </a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (

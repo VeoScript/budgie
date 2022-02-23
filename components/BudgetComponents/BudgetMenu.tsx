@@ -1,4 +1,5 @@
 import React from 'react'
+import ChangeCurrency from '../DialogComponents/ChangeCurrency'
 import RenameBudget from '../DialogComponents/RenameBudget'
 import DeleteBudget from '../DialogComponents/DeleteBudget'
 import { RiSettings4Line } from 'react-icons/ri'
@@ -33,6 +34,10 @@ const BudgetMenu: React.FC<TypeProps> = ({ budget }) => {
           <div className="absolute w-[10rem] -left-5 top-10 z-0">
             <div className="flex w-full overflow-hidden shadow-sm rounded-md bg-white border border-zinc-200">
               <div className="flex flex-col w-full divide-y">
+                <ChangeCurrency
+                  budget={budget}
+                  setIsDropdown={setIsDropdown}
+                />
                 <RenameBudget
                   budget={budget}
                   setIsDropdown={setIsDropdown}
