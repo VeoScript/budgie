@@ -19,7 +19,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       counter: true,
       type: true,
       name: true,
-      values: true
+      values: true,
+      date: true
     }
   })
   res.status(200).json(getBudgetDetails)

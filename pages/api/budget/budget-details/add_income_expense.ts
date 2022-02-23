@@ -7,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       type: req.body.getType,
       name: req.body.getName,
       values: req.body.getAmount,
+      date: String(new Date()),
       budgetId: req.body.budgetId
     }
   })
