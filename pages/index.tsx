@@ -19,16 +19,21 @@ const fetcher = async (
 }
 
 interface TypeProps {
-  getUserId: any
+  getUser: any
   getBudgets: any
 }
 
-const Budget: NextPage<TypeProps> = ({ getUserId, getBudgets }) => {
+const Budget: NextPage<TypeProps> = ({ getUser, getBudgets }) => {
 
   const { data: session, status } = useSession()
 
+  const { data: user } = useSWR(`/api/auth/user/${getUser.id}`, fetcher, {
+    refreshInterval: 1000,
+    fallbackData: getUser
+  })
+
   // fetch budgets from database on realtime
-  const { data: budgets } = useSWR(`/api/budget/${session && getUserId.id}`, fetcher, {
+  const { data: budgets } = useSWR(`/api/budget/${session && getUser.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: getBudgets
   })
@@ -52,9 +57,11 @@ const Budget: NextPage<TypeProps> = ({ getUserId, getBudgets }) => {
         <title>Budgie</title>
       </Head>
       {session && (
-        <Layout>
+        <Layout
+          getUser={user}
+        >
           <BudgetList
-            getUserId={getUserId}
+            getUserId={user}
             budgets={budgets}
           />
         </Layout>
@@ -67,18 +74,23 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   
   const session = await getSession(ctx)
 
-  const getUserId = await prisma.user.findFirst({
+  const getUser = await prisma.user.findFirst({
     where: {
       email: session?.user?.email
     },
     select: {
-      id: true
+      id: true,
+      image: true,
+      name: true,
+      email: true,
+      username: true,
+      location: true
     }
   })
 
   const getBudgets = await prisma.budget.findMany({
     where: {
-      userId: getUserId?.id
+      userId: getUser?.id
     },
     orderBy: [{
       counter: 'desc'
@@ -96,7 +108,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      getUserId,
+      getUser,
       getBudgets
     }
   }

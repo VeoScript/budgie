@@ -67,7 +67,9 @@ const BudgetID: NextPage<TypeProps> = ({ params, get_budget, get_budget_details 
       <Head>
         <title>{ get_budget.name }</title>
       </Head>
-      <Layout>
+      <Layout
+        getUser={get_budget.user}
+      >
         <Toaster position='bottom-left' />
         <BudgetDetails
           budget={budget}
@@ -100,7 +102,8 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
       user: {
         select: {
           id: true,
-          email: true
+          email: true,
+          name: true
         }
       }
     }

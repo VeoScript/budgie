@@ -48,7 +48,7 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
     <>
       <button
         type="button"
-        className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+        className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-sm text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
         onClick={openModal}
       >
         Create Budget
@@ -90,13 +90,13 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
                 {!isSubmitting && (
                   <button
                     type="submit"
-                    className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+                    className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
                   >
                     Add
                   </button>
                 )}
                 {isSubmitting && (
-                  <div className="px-5 py-1.5 outline-none rounded-md bg-blue-600 text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
+                  <div className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-purewhite transition ease-linear duration-200 hover:bg-opacity-80">
                     <Spinner
                       color="#FFFFFF"
                       width={24}

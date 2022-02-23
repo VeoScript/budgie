@@ -7,10 +7,15 @@ import { signOut, useSession } from 'next-auth/react'
 
 interface SessionProps {
   get_session: any
+  getUser: any
+}
+
+interface TypeProps {
+  getUser: any
 }
 
 // Navbar Function Component
-const NavBar = () => {
+const NavBar: React.FC<TypeProps> = ({ getUser }) => {
 
   const { data: session } = useSession()
 
@@ -47,7 +52,10 @@ const NavBar = () => {
       </div>
       <div className="flex">
         {session && (
-          <AccountMenu get_session={session} />
+          <AccountMenu
+            get_session={session}
+            getUser={getUser}
+          />
         )}
       </div>
     </div>
@@ -55,7 +63,7 @@ const NavBar = () => {
 }
 
 // Menubar Function Component
-const AccountMenu: React.FC<SessionProps> = ({ get_session }) => {
+const AccountMenu: React.FC<SessionProps> = ({ get_session, getUser }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="flex items-center rounded-full border-2 border-mattblack">
@@ -71,16 +79,16 @@ const AccountMenu: React.FC<SessionProps> = ({ get_session }) => {
       </Menu.Button>
       <Menu.Items className="flex flex-col overflow-hidden absolute right-0 w-48 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-zinc-200 focus:outline-none">
         <Menu.Item>
-          <Link href="/">
+          <Link href="/account">
             <a className="p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100">
-              {get_session.user?.name}
+              {getUser.name}
             </a>
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Link href="/settings">
+          <Link href="/about">
             <a className="p-3 font-medium text-sm text-left cursor-pointer transition ease-in-out duration-200 hover:bg-zinc-100">
-              Settings
+              About
             </a>
           </Link>
         </Menu.Item>
