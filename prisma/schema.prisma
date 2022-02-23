@@ -61,6 +61,7 @@ model Budget {
   id                              String                @id      @default(cuid())
   counter                         Int                   @unique  @default(autoincrement())
   name                            String
+  currency                        String                @default("₱")
   balance                         Int?                  @default(0)
   income                          Int?                  @default(0)
   expense                         Int?                  @default(0)
@@ -72,9 +73,10 @@ model Budget {
 model BudgetDetails {
   id                              String                @id      @default(cuid())
   counter                         Int                   @unique  @default(autoincrement())
-  type                            String?               //e.g. Income, Expense, Paid and it will indicate by different colors
+  type                            String?
   name                            String?
   values                          Int?
+  date                            String
   budget                          Budget                @relation(fields: [budgetId], references: [id], onDelete: Cascade)
   budgetId                        String
 }
