@@ -88,7 +88,7 @@ const ChangeCurrency: React.FC<TypeProps> = ({ budget, setIsDropdown }) => {
                   <option value="¥">¥ - Japanese Yen</option>
                   <option value="₩">₩ - Korean Won</option>
                   <option value="€">€ - Euro</option>
-                  <option value="₤">₤ - British Pound</option>
+                  <option value="£">£ - British Pound</option>
                 </select>
               </label>
               <div className="flex items-center justify-end w-full space-x-1">
