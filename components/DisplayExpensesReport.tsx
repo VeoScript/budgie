@@ -1,12 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
+import PrintPreview from './Print/PrintPreview'
 import Spinner from '../utils/Spinner'
 
 interface TypeProps {
+  getUser: any
   getBudget: any
 }
 
-const DisplayExpensesReport: React.FC<TypeProps> = ({ getBudget }) => {
+const DisplayExpensesReport: React.FC<TypeProps> = ({ getUser, getBudget }) => {
   return (
     <div className="flex flex-col w-full px-28 py-10 space-y-10">
       <div className="flex flex-row items-center justify-between w-full px-5">
@@ -60,12 +62,11 @@ const DisplayExpensesReport: React.FC<TypeProps> = ({ getBudget }) => {
                       </a>
                     </Link>
                     {getExpenses.length > 0 && (
-                      <button
-                        type="button"
-                        className="outline-none rounded-md px-3 py-1 text-sm text-purewhite bg-mattblack transition ease-in-out duration-100 hover:bg-opacity-80"
-                      >
-                        Print
-                      </button>
+                      <PrintPreview
+                        user={getUser}
+                        budget={budget}
+                        budgetDetails={budget.budgetDetails}
+                      />
                     )}
                   </div>
                 </div>

@@ -58,7 +58,10 @@ const ExpensesReport: NextPage<TypeProps> = ({ getUser, getBudget }) => {
       <Layout
         getUser={user}        
       >
-        <DisplayExpensesReport getBudget={budget} />
+        <DisplayExpensesReport
+          getUser={user}
+          getBudget={budget}
+        />
       </Layout>
     </React.Fragment>
   )
@@ -100,7 +103,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         select: {
           id: true,
           name: true,
-          type: true
+          type: true,
+          values: true,
+          date: true
         }
       }
     },
