@@ -29,7 +29,7 @@ const Statistics: NextPage<TypeProps> = ({ user, budget }) => {
   const { data: session, status } = useSession()
 
   // fetch budgets from database on realtime
-  const { data: get_budget } = useSWR(`/api/budget/statistics/${user.id}`, fetcher, {
+  const { data: get_budget } = useSWR(`/api/budget/statistics/${session && user.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: budget
   })

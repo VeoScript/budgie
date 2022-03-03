@@ -27,7 +27,7 @@ const ExpensesReport: NextPage<TypeProps> = ({ getUser, getBudget }) => {
 
   const { data: session, status } = useSession()
 
-  const { data: user } = useSWR(`/api/auth/user/${getUser.id}`, fetcher, {
+  const { data: user } = useSWR(`/api/auth/user/${session && getUser.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: getUser
   })

@@ -27,8 +27,10 @@ interface TypeProps {
 
 const BudgetID: NextPage<TypeProps> = ({ params, get_budget, get_budget_details }) => {
 
+  const { data: session, status } = useSession()
+
   // fetch budgets from database on realtime
-  const { data: budget } = useSWR(`/api/budget/income-expense/${params.id}`, fetcher, {
+  const { data: budget } = useSWR(`/api/budget/income-expense/${session && params.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: get_budget
   })
@@ -38,8 +40,6 @@ const BudgetID: NextPage<TypeProps> = ({ params, get_budget, get_budget_details 
     refreshInterval: 1000,
     fallbackData: get_budget_details
   })
-
-  const { data: session, status } = useSession()
 
   React.useEffect(() => {
     if (status === 'unauthenticated') {
