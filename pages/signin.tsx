@@ -83,7 +83,7 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
         </div>
         <div className="flex items-center justify-center w-full p-5">
           <p className="font-light text-xs">
-            &copy; 2022, All rights reserved. <span className="font-bold">Budgie</span> by VEOSCRIPT.
+            &copy; { new Date().getFullYear() }, All rights reserved. <span className="font-bold">Budgie</span> by VEOSCRIPT.
           </p>
         </div>
       </div>
