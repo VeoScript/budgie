@@ -4,9 +4,10 @@ import Head from 'next/head'
 import Router from 'next/router'
 import Layout from '../layouts/default'
 import AccountComponent from '../components/Account'
-import { getSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
 import prisma from '../lib/Prisma'
 import useSWR from 'swr'
+import Loading from '../layouts/loading'
 
 const fetcher = async (
   input: RequestInfo,
@@ -24,10 +25,25 @@ interface TypeProps {
 
 const Account: NextPage<TypeProps> = ({ user, budget }) => {
 
+  const { data: session, status } = useSession()
+
   const { data: loggedInUser } = useSWR(`/api/auth/user/${user.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: user
   })
+
+  React.useEffect(() => {
+    if (!session) {
+      Router.push('/signin')
+      return
+    }
+  })
+
+  if (status === "loading") {
+    return (
+      <Loading />
+    )
+  }
 
   return (
     <React.Fragment>
