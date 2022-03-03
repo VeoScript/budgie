@@ -47,7 +47,7 @@ const Account: React.FC<TypeProps> = ({ budget, loggedInUser }) => {
       })
     })
 
-    Router.push('/account')
+    Router.replace(Router.asPath)
   }
 
   return (

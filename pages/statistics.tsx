@@ -1,12 +1,14 @@
 import { NextPage, GetServerSideProps } from 'next'
 import React from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import Layout from '../layouts/default'
 import DoughnutChart from '../components/Statistics/DoughnutChart'
 import Summary from '../components/Statistics/Summary'
 import prisma from '../lib/Prisma'
 import useSWR from 'swr'
-import { getSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
+import Loading from '../layouts/loading'
 
 const fetcher = async (
   input: RequestInfo,
@@ -24,11 +26,26 @@ interface TypeProps {
 
 const Statistics: NextPage<TypeProps> = ({ user, budget }) => {
 
+  const { data: session, status } = useSession()
+
   // fetch budgets from database on realtime
   const { data: get_budget } = useSWR(`/api/budget/statistics/${user.id}`, fetcher, {
     refreshInterval: 1000,
     fallbackData: budget
   })
+
+  React.useEffect(() => {
+    if (!session) {
+      Router.push('/signin')
+      return
+    }
+  })
+
+  if (status === "loading") {
+    return (
+      <Loading />
+    )
+  }
 
   const all_budget = get_budget.map((budget: { income: number, expense: number, balance: number }) => {
     return {
@@ -53,7 +70,7 @@ const Statistics: NextPage<TypeProps> = ({ user, budget }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>Budgie | Statistics</title>
+        <title>Budgie (Statistics)</title>
       </Head>
       <Layout
         getUser={user}

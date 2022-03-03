@@ -35,7 +35,7 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>Budgie | Sign in</title>
+        <title>Budgie (Sign in)</title>
       </Head>
       <div className="font-titilliumweb cursor-default flex flex-col items-center justify-between px-32 w-full h-screen overflow-hidden bg-white">
         <div className="flex flex-row items-center justify-between w-full h-full mt-5">

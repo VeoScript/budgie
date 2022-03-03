@@ -53,7 +53,7 @@ const ExpensesReport: NextPage<TypeProps> = ({ getUser, getBudget }) => {
   return (
     <React.Fragment>
       <Head>
-        <title>Expenses Report</title>
+        <title>Budgie (Expenses Report)</title>
       </Head>
       <Layout
         getUser={user}        
