@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import React from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 import Router, { useRouter } from 'next/router'
 import Loading from '../layouts/loading'
 import { getProviders, signIn, useSession } from 'next-auth/react'
@@ -42,7 +43,18 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full h-full space-y-10 mt-5">
             <div className="flex flex-col items-start justify-center w-full">
               <div className="flex flex-col items-start space-y-5">
-                <h1 className="font-berkshireswash font-bold text-6xl text-mattblack">Budgie</h1>
+                <div className="flex flex-row items-center space-x-2">
+                  <Image
+                    src="/favicon.ico"
+                    width={55}
+                    height={55}
+                    className="rounded-full"
+                    layout="intrinsic"
+                    quality={75}
+                    alt="Profile"
+                  />
+                  <h1 className="font-berkshireswash font-bold text-6xl text-mattblack">Budgie</h1>
+                </div>
                 <div className="flex flex-col space-y-1">
                   <p className="font-medium text-2xl text-mattblack">
                     Your personal Budget Tracker & Planner

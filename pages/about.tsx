@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import Router from 'next/router'
 import { RiArrowGoBackLine } from 'react-icons/ri'
@@ -14,7 +15,18 @@ const About: NextPage = () => {
       <div className="flex flex-col items-center justify-center w-full h-screen px-5">
         <div className="flex flex-col items-start justify-center w-full max-w-xl space-y-5">
           <div className="flex flex-row items-center justify-between w-full">
-            <h3 className="font-berkshireswash font-bold text-5xl text-mattblack">Budgie</h3>
+            <div className="flex items-center space-x-2">
+              <Image
+                src="/favicon.ico"
+                width={55}
+                height={55}
+                className="rounded-full"
+                layout="intrinsic"
+                quality={75}
+                alt="Profile"
+              />
+              <h3 className="font-berkshireswash font-bold text-5xl text-mattblack">Budgie</h3>
+            </div>
             <button
               title="Back"
               type="button"
