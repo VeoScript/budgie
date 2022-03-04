@@ -10,11 +10,11 @@ interface TypeProps {
 
 const Summary: React.FC<TypeProps> = ({ budget, overall_income, overall_expenses, overall_balance }) => {
   return (
-    <div className="flex justify-center w-full h-full overflow-hidden border-l border-zinc-400">
+    <div className="flex justify-center w-full h-full overflow-hidden border-t md:border-t-0 border-l border-zinc-400">
       <div className="flex flex-col w-full max-w-full">
-        <div className="flex flex-row items-center justify-between w-full p-3">
-          <h3 className="font-bold text-lg">Budget Plan Summary</h3>
-          <span className="font-normal text-xs">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full p-3">
+          <h3 className="font-bold text-base md:text-lg">Budget Plan Summary</h3>
+          <span className="font-normal text-[11px] md:text-xs">
             Calculate the sum of Incomes, Expenses and Balances
           </span>
         </div>
@@ -29,9 +29,9 @@ const Summary: React.FC<TypeProps> = ({ budget, overall_income, overall_expenses
           </div>
         )}
         {budget.length === 0 && (
-          <div className="flex flex-col items-center justify-center w-full h-full">
-            <h3 className="font-bold text-2xl text-zinc-500">Budget Plan has no entries yet.</h3>
-            <h5 className="font-normal text-base text-zinc-400">Create your Budget Plan first.</h5>
+          <div className="flex flex-col items-center justify-center w-full h-full p-10">
+            <h3 className="font-bold text-lg md:text-2xl text-zinc-500">Budget Plan has no entries yet.</h3>
+            <h5 className="font-normal text-xs md:text-base text-zinc-400">Create your Budget Plan first.</h5>
           </div>
         )}
         {budget.length > 0 && (

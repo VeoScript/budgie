@@ -48,7 +48,7 @@ const CreateBudget: React.FC<TypeProps> = ({ getUserId }) => {
     <>
       <button
         type="button"
-        className="px-5 py-1.5 outline-none rounded-md bg-mattblack text-sm text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
+        className="px-3 md:px-5 py-1 md:py-1.5 outline-none rounded-md bg-mattblack text-sm text-purewhite transition ease-linear duration-200 hover:bg-opacity-80"
         onClick={openModal}
       >
         Create Budget

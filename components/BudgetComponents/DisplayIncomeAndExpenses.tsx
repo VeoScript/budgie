@@ -96,16 +96,16 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
           )}
           {budget_details.map((get_budget: any) => (
             <div className={`${get_budget.type === 'Income' ? 'bg-green-100' : 'bg-red-100'} flex flex-row items-center w-full divide-x divide-zinc-400 border-b border-zinc-400`} key={get_budget.counter}>
-              <div className="flex items-center w-full max-w-[12rem] px-3">
+              <div className="flex items-center w-full max-w-[12rem] px-3 text-[12px] md:text-base">
                 {get_budget.type}
               </div>
-              <div className="flex items-center w-full max-w-full p-3">
+              <div className="flex items-center w-full max-w-full p-3 text-[12px] md:text-base">
                 {get_budget.name}
               </div>
-              <div className="flex items-center w-full max-w-[15rem] p-3">
+              <div className="flex items-center w-full max-w-[15rem] p-3 text-[12px] md:text-base">
                 {budget.currency} {get_budget.values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </div>
-              <div className="flex items-center w-full max-w-[15rem] p-3">
+              <div className="flex items-center w-full max-w-[15rem] p-3 text-[12px] md:text-base">
                 <Moment date={ get_budget.date } format="lll" />
               </div>
               <div className="flex items-center justify-center w-full max-w-[8rem] py-1 space-x-5">
@@ -133,7 +133,7 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
         </div>
       )}
       {/* Table Footer Area */}
-      <div className="flex flex-row items-center justify-between w-full p-3 border-t border-zinc-400">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full space-y-2 md:space-y-0 p-3 border-t border-zinc-400">
         <div className="flex items-center justify-start w-full space-x-2 divide-x divide-zinc-400">
           <div className="flex items-center space-x-1 px-2 text-sm">
             <span className="font-light text-zinc-500">Total Income:</span>
@@ -144,7 +144,7 @@ const DisplayIncomeAndExpenses: React.FC<TypeProps> = ({ budget, budget_details 
             <span className="font-bold text-zinc-800">{budget.currency} {budget.expense.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
           </div>
         </div>
-        <div className="flex items-center justify-end w-full space-x-2">
+        <div className="flex items-center justify-center md:justify-end w-full space-x-2">
           <span className="font-light text-xs text-zinc-3000">If there is any problem about the computation, try to reset your budget plan.</span>
           <ResetBudget
             budget={budget}

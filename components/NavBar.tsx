@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Menu } from '@headlessui/react'
 import { signOut, useSession } from 'next-auth/react'
+import { RiLayoutMasonryLine, RiPieChartLine, RiAirplayLine } from 'react-icons/ri'
 
 interface SessionProps {
   get_session: any
@@ -22,14 +23,14 @@ const NavBar: React.FC<TypeProps> = ({ getUser }) => {
   const { pathname } = useRouter()
 
   return (
-    <div className="flex flex-row items-center justify-between w-full px-10 py-3 border-b border-zinc-300">
-      <div className="flex">
-        <h1 className="font-berkshireswash font-bold text-2xl cursor-default">Budgie</h1>
+    <div className="flex flex-row items-center justify-between w-full px-3 md:px-10 py-3 border-b border-zinc-300">
+      <div className="flex justify-start w-full">
+        <h1 className="font-berkshireswash font-bold text-xl md:text-2xl cursor-default">Budgie</h1>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="hidden md:flex items-center justify-center w-full space-x-2">
         <div className="flex">
           <Link href="/">
-            <a className={`px-3 py-1.5 rounded-md font-semibold text-sm ${pathname === '/' ? 'text-purewhite bg-mattblack' : 'hover:bg-mattblack hover:bg-opacity-10'} transition ease-in-out duration-300`}>
+            <a className={`px-3 py-1.5 rounded-md font-semibold text-xs md:text-sm ${pathname === '/' ? 'text-purewhite bg-mattblack' : 'hover:bg-mattblack hover:bg-opacity-10'} transition ease-in-out duration-300`}>
               Budget
             </a>
           </Link>
@@ -50,7 +51,30 @@ const NavBar: React.FC<TypeProps> = ({ getUser }) => {
           </Link>
         </div>
       </div>
-      <div className="flex">
+      <div className="md:hidden flex items-center justify-center w-full space-x-2">
+        <div className="flex">
+          <Link href="/">
+            <a title="Budget Plans" className={`px-3 py-1.5 rounded-md font-semibold text-sm ${pathname === '/' ? 'text-purewhite bg-mattblack' : 'hover:bg-mattblack hover:bg-opacity-10'} transition ease-in-out duration-300`}>
+              <RiLayoutMasonryLine className="w-6 h-6" />
+            </a>
+          </Link>
+        </div>
+        <div className="flex">
+          <Link href="/expenses-report">
+            <a title="Expenses Report" className={`px-3 py-1.5 rounded-md font-semibold text-sm ${pathname === '/expenses-report' ? 'text-purewhite bg-mattblack' : 'hover:bg-mattblack hover:bg-opacity-10'} transition ease-in-out duration-300`}>
+              <RiAirplayLine className="w-6 h-6" />
+            </a>
+          </Link>
+        </div>
+        <div className="flex">
+          <Link href="/statistics">
+            <a title="Statistics" className={`px-3 py-1.5 rounded-md font-semibold text-sm ${pathname === '/statistics' ? 'text-purewhite bg-mattblack' : 'hover:bg-mattblack hover:bg-opacity-10'} transition ease-in-out duration-300`}>
+              <RiPieChartLine className="w-6 h-6" />
+            </a>
+          </Link>
+        </div>
+      </div>
+      <div className="flex justify-end w-full">
         {session && (
           <AccountMenu
             get_session={session}

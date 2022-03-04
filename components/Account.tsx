@@ -51,9 +51,9 @@ const Account: React.FC<TypeProps> = ({ budget, loggedInUser }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full px-[20rem]">
+    <div className="flex flex-col items-center justify-center w-full h-full px-3 md:px-[20rem] my-10 md:mt-0">
       <div className="flex flex-col items-center justify-center w-full space-y-10">
-        <div className="flex flex-row items-center w-full space-x-10">
+        <div className="flex flex-row items-center w-full space-x-5 md:space-x-10">
           <Image
             src={ loggedInUser.image }
             width={150}
@@ -81,7 +81,7 @@ const Account: React.FC<TypeProps> = ({ budget, loggedInUser }) => {
             </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onUpdateProfile)} className="flex flex-row justify-center w-full space-x-5">
+        <form onSubmit={handleSubmit(onUpdateProfile)} className="flex flex-col md:flex-row justify-center w-full space-x-0 md:space-x-5 space-y-5 md:space-y-0">
           <div className="flex flex-col w-full space-y-3">
             <label className="block w-full">
               <span className="text-sm text-zinc-500">Display Name</span>

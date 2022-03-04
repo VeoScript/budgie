@@ -11,7 +11,7 @@ const About: NextPage = () => {
       <Head>
         <title>About</title>
       </Head>
-      <div className="flex flex-col items-center justify-center w-full h-screen">
+      <div className="flex flex-col items-center justify-center w-full h-screen px-5">
         <div className="flex flex-col items-start justify-center w-full max-w-xl space-y-5">
           <div className="flex flex-row items-center justify-between w-full">
             <h3 className="font-berkshireswash font-bold text-5xl text-mattblack">Budgie</h3>
