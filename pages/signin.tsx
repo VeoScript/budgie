@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Router, { useRouter } from 'next/router'
 import Loading from '../layouts/loading'
-import { getProviders, signIn, useSession } from 'next-auth/react'
+import { getProviders, signIn, getSession, useSession } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
 import { RiFacebookFill  } from 'react-icons/ri'
 import { errors } from '../utils/NextAuthCustomErrors'
@@ -19,13 +19,6 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
   const { status } = useSession()
 
   const { error } = useRouter().query
-
-  React.useEffect(() => {
-    if (status === 'authenticated') {
-      Router.push('/')
-      return
-    }
-  })
 
   if (status === "loading") {
     return (
@@ -105,9 +98,20 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const providers = await getProviders()
+
+  const session = await getSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
 
   return {
     props: {
