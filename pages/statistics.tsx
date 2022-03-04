@@ -75,16 +75,16 @@ const Statistics: NextPage<TypeProps> = ({ user, budget }) => {
       <Layout
         getUser={user}
       >
-        <div className="flex flex-col w-full h-full overflow-y-auto px-28 py-10 space-y-10">
+        <div className="flex flex-col w-full h-full overflow-y-auto px-0 md:px-28 py-10 space-y-10">
           <div className="flex flex-row items-center justify-between w-full px-5">
-            <div className="flex items-center justify-start w-full font-bold text-2xl">
+            <div className="flex items-center justify-start w-full font-bold text-xl md:text-2xl">
               Statistics
             </div>
-            <div className="flex items-center justify-end w-full font-light text-lg">
+            <div className="flex items-center justify-end w-full font-light text-sm md:text-lg">
               Overall Budget Plan Statistic Chart
             </div>
           </div>
-          <div className="flex flex-row items-start w-full space-x-5 rounded-md border border-zinc-400">
+          <div className="flex flex-col md:flex-row items-center md:items-start w-full space-x-0 md:space-x-5 rounded-md border border-zinc-400">
             <DoughnutChart
               overall_income={overall_income}
               overall_expenses={overall_expenses}
