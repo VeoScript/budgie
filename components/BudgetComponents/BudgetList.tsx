@@ -26,16 +26,16 @@ const BudgetList: React.FC<TypeProps> = ({ getUserId, budgets }) => {
       </div>
       <div className="flex flex-col w-full">
         <div className="flex flex-row items-center w-full border-b border-zinc-400">
-          <div className="flex items-center justify-start px-5 py-2 w-full max-w-xl font-bold text-sm text-zinc-700">
+          <div className="flex items-center justify-start px-5 py-2 w-full max-w-xl font-bold text-sm md:text-xl text-zinc-700">
             Budget
           </div>
-          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm text-zinc-700">
+          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm md:text-xl text-zinc-700">
             Total Income
           </div>
-          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm text-zinc-700">
+          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm md:text-xl text-zinc-700">
             Total Expenses
           </div>
-          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm text-zinc-700">
+          <div className="flex items-center justify-center px-5 py-2 w-full max-w-md font-bold text-sm md:text-xl text-zinc-700">
             Balance
           </div>
         </div>

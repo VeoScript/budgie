@@ -30,9 +30,9 @@ const DisplayExpensesReport: React.FC<TypeProps> = ({ getUser, getBudget }) => {
         </div>
       )}
       {getBudget && (
-        <div className="flex flex-col w-full h-full max-h-full space-y-1 px-3 md:px-0 overflow-y-scroll scrollbar-thin scrollbar-thumb-zinc-500 scrollbar-track-zinc-300">
+        <div className="flex flex-col items-center w-full h-full space-y-1 px-3 md:px-0 overflow-y-scroll scrollbar-thin scrollbar-thumb-zinc-500 scrollbar-track-zinc-300">
           {getBudget.length === 0 && (
-            <div className="flex flex-col items-center justify-center w-full h-screen">
+            <div className="flex flex-col items-center justify-center w-full h-full mt-32">
               <h3 className="font-bold text-3xl text-zinc-500">Welcome to <span className="font-berkshireswash text-mattblack">Budgie</span></h3>
               <h5 className="font-normal text-base text-zinc-400">You have no expenses report right now.</h5>
             </div>
