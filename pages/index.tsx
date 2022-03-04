@@ -38,13 +38,6 @@ const Budget: NextPage<TypeProps> = ({ getUser, getBudgets }) => {
     fallbackData: getBudgets
   })
 
-  React.useEffect(() => {
-    if (!session) {
-      Router.push('/signin')
-      return
-    }
-  })
-
   if (status === "loading") {
     return (
       <Loading />
@@ -73,6 +66,15 @@ const Budget: NextPage<TypeProps> = ({ getUser, getBudgets }) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   
   const session = await getSession(ctx)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
 
   const getUser = await prisma.user.findFirst({
     where: {

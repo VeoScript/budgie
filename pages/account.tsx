@@ -32,13 +32,6 @@ const Account: NextPage<TypeProps> = ({ user, budget }) => {
     fallbackData: user
   })
 
-  React.useEffect(() => {
-    if (!session) {
-      Router.push('/signin')
-      return
-    }
-  })
-
   if (status === "loading") {
     return (
       <Loading />

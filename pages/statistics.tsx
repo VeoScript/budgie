@@ -34,13 +34,6 @@ const Statistics: NextPage<TypeProps> = ({ user, budget }) => {
     fallbackData: budget
   })
 
-  React.useEffect(() => {
-    if (!session) {
-      Router.push('/signin')
-      return
-    }
-  })
-
   if (status === "loading") {
     return (
       <Loading />
