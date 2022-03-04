@@ -52,7 +52,7 @@ const Account: React.FC<TypeProps> = ({ budget, loggedInUser }) => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full px-3 md:px-[20rem] my-10 md:mt-0">
-      <div className="flex flex-col items-center justify-center w-full space-y-10">
+      <div className="flex flex-col items-center justify-center w-full py-5 space-y-10">
         <div className="flex flex-row items-center w-full space-x-5 md:space-x-10">
           <Image
             src={ loggedInUser.image }
