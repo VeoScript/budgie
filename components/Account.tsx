@@ -4,6 +4,8 @@ import Router from 'next/router'
 import Spinner from '../utils/Spinner'
 import { MdVerified } from 'react-icons/md'
 import { useForm } from 'react-hook-form'
+import { RiQuestionLine } from 'react-icons/ri'
+import ClearSessions from './DialogComponents/ClearSessions'
 
 interface TypeProps {
   budget: any
@@ -51,34 +53,40 @@ const Account: React.FC<TypeProps> = ({ budget, loggedInUser }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full px-3 md:px-[20rem] my-10 md:mt-0">
+    <div className="flex flex-col items-center justify-center w-full h-full px-3 lg:px-[20rem] my-10 md:mt-0">
       <div className="flex flex-col items-center justify-center w-full py-5 space-y-10">
-        <div className="flex flex-row items-center w-full space-x-5 md:space-x-10">
-          <Image
-            src={ loggedInUser.image }
-            width={150}
-            height={150}
-            className="rounded-full"
-            layout="intrinsic"
-            quality={75}
-            alt="Profile"
-          />
-          <div className="flex flex-col">
-            <div className="flex items-center space-x-2">
-              <h1 className="font-bold text-3xl">{loggedInUser.name}</h1>
-              {budget.length >= 3 && (
-                <MdVerified className="w-6 h-6 text-blue-600" />
-              )}
-            </div>
-            <div className="flex items-center">
-              <h3 className="font-light text-xl text-zinc-500">
-                {budget.length >= 3 ? 'Budgie Loyal Friend' : 'Budgie Friend'}
-              </h3>
-            </div>
-            <div className="flex items-center space-x-2 mt-5">
-              <span className="font-light text-sm">Your Budget Plan:</span>
-              <span className="font-bold text-sm">{budget.length}</span>
-            </div>
+        <div className="flex flex-col md:flex-row items-center w-full space-x-5 md:space-x-10">
+          <div className="flex flex-row items-center w-full space-x-5">
+            <Image
+              src={ loggedInUser.image }
+              width={250}
+              height={250}
+              className="rounded-full"
+              layout="intrinsic"
+              quality={75}
+              alt="Profile"
+            />
+            <div className="flex flex-col w-full">
+              <div className="flex items-center space-x-2">
+                <h1 className="font-bold text-3xl">{loggedInUser.name}</h1>
+                {budget.length >= 3 && (
+                  <MdVerified className="w-6 h-6 text-blue-600" />
+                )}
+              </div>
+              <div className="flex items-center">
+                <h3 className="font-light text-xl text-zinc-500">
+                  {budget.length >= 3 ? 'Budgie Loyal Friend' : 'Budgie Friend'}
+                </h3>
+              </div>
+              <div className="flex items-center space-x-2 mt-5">
+                <span className="font-light text-sm">Your Budget Plan:</span>
+                <span className="font-bold text-sm">{budget.length}</span>
+              </div>
+            </div>  
+          </div>
+          <div className="flex items-center justify-start md:justify-end w-full max-w-[10rem] px-5 md:px-0 space-x-2">
+            <ClearSessions user={loggedInUser} />
+            <RiQuestionLine className="cursor-help" title="Note: This will be remove/delete your sessions from all browser that you logged in." />
           </div>
         </div>
         <form onSubmit={handleSubmit(onUpdateProfile)} className="flex flex-col md:flex-row justify-center w-full space-x-0 md:space-x-5 space-y-5 md:space-y-0">
