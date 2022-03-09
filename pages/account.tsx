@@ -78,7 +78,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       name: true,
       email: true,
       username: true,
-      location: true
+      location: true,
+      sessions: {
+        select: {
+          id: true
+        }
+      }
     }
   })
 
