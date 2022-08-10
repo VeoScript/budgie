@@ -32,7 +32,7 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
         <title>Budgie (Sign in)</title>
       </Head>
       <div className="font-titilliumweb cursor-default flex justify-center w-full h-screen overflow-hidden bg-white">
-        <div className="flex flex-col items-center justify-between px-10 md:px-32 w-full max-w-[2400px] h-full">
+        <div className="flex flex-col items-center justify-between px-10 md:px-32 w-full max-w-[1401px] h-full">
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full h-full space-y-10 md:space-y-0 mt-5">
             <div className="flex flex-col items-start justify-center w-full">
               <div className="flex flex-col items-start space-y-5">
