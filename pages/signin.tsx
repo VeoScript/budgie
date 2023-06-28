@@ -68,14 +68,11 @@ const Signin: NextPage<TypeProps> = ({ providers }) => {
                 {Object.values(providers).map((provider: any) => (
                   <div className="flex w-full" key={provider.name}>
                     <button
-                      className={`flex items-center space-x-5 p-3 rounded-md w-full max-w-xs ${provider.name === 'Google' && 'bg-white border border-gray-500'} ${provider.name === 'Facebook' && 'bg-blue-600 text-white'}`}
+                      className={`flex items-center space-x-5 p-3 rounded-md w-full max-w-xs ${provider.name === 'Google' && 'bg-white border border-gray-500'}`}
                       onClick={() => signIn(provider.id)}
                     >
                       {provider.name === 'Google' && (
                         <FcGoogle className="w-5 h-5" />
-                      )}
-                      {provider.name === 'Facebook' && (
-                        <RiFacebookFill className="w-5 h-5 text-white" />
                       )}
                       <span>Sign in with {provider.name}</span>
                     </button>
